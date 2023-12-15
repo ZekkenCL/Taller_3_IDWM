@@ -43,22 +43,6 @@ def es_anio_nacimiento_valido(anio_nacimiento):
 def es_nombre_valido(nombre):
     return 10 <= len(nombre) <= 150
 
-def get_repository_info(username, repo_name):
-    url = f"https://api.github.com/repos/{username}/{repo_name}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
-
-def get_commit_count(username, repo_name):
-    url = f"https://api.github.com/repos/{username}/{repo_name}/commits"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return len(response.json())
-    else:
-        return 0
-
 
 
 
@@ -148,14 +132,31 @@ def edit_profile(id):
     db.session.commit()
     return jsonify({"msg": "Perfil actualizado con éxito"}), 200
 
-@routes.route('/repo/<username>/<repo_name>')
-def repository_info(username, repo_name):
-    repo_info = get_repository_info(username, repo_name)
-    if repo_info:
-        repo_info['commit_count'] = get_commit_count(username, repo_name)
-        return jsonify(repo_info)
+@routes.route('/repos/<username>/<repo_name>/commits')
+@jwt_required()
+def list_commits(username, repo_name):
+    url = f"https://api.github.com/repos/{username}/{repo_name}/commits"
+    response = requests.get(url)
+    if response.status_code == 200:
+        commits = response.json()
+        # Los commits ya vienen ordenados por fecha de creación, con el más reciente primero
+        return jsonify(commits)
     else:
-        return jsonify({"error": "Repository not found"}), 404
+        return jsonify({"error": "Error al obtener commits"}), response.status_code
+    
+@routes.route('/repos/<username>')
+@jwt_required()
+def list_repositories(username):
+    url = f"https://api.github.com/users/{username}/repos"
+    response = requests.get(url)
+    if response.status_code == 200:
+        repos = response.json()
+        # Ordenar repositorios por fecha de modificación
+        repos.sort(key=lambda x: x['updated_at'], reverse=True)
+        return jsonify(repos)
+    else:
+        return jsonify({"error": "Error al obtener repositorios"}), response.status_code
+
     
 
 
