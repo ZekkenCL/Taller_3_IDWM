@@ -3,10 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 
 # Inicializa las extensiones globales sin un contexto de aplicación específico
 db = SQLAlchemy()
 migrate = Migrate()
+load_dotenv()
 
 def create_app():
     # Crea una instancia de la aplicación Flask
@@ -19,7 +22,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Establece la clave secreta para JWT (JSON Web Token)
-    app.config['JWT_SECRET_KEY'] = 'jakshdjkashd882jhj3bjh1l'
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
     # Inicializa el manejador de JWT con la aplicación Flask
     jwt = JWTManager(app)
