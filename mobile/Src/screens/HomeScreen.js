@@ -2,7 +2,11 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 
+
+// Componente de pantalla de inicio.
 const HomeScreen = ({ navigation }) => {
+
+  // Renderiza los elementos de la interfaz, incluyendo una imagen y botones para iniciar sesión o registrarse.
   return (
     <View style={styles.container}>
       <Image 
@@ -30,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-
+// Estilos para la pantalla.
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -3,16 +3,20 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { TextInput, Button, Modal, Portal, Text } from 'react-native-paper';
 import AuthService from '../services/AuthService';
 
+// Componente para la pantalla de registro de usuarios.
 const RegisterScreen = ({ navigation }) => {
+
+  // Estados para almacenar los valores ingresados por el usuario.
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [birthdate, setBirthdate] = useState('');
     const [dni, setDni] = useState('');
+    // Estados para controlar la visibilidad de los modales y mensajes de error.
     const [errorModalVisible, setErrorModalVisible] = useState(false);
     const [successModalVisible, setSuccessModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-
+// Funciones de validación para los campos del formulario.
   const esCorreoValido = (email) => /^[a-zA-Z0-9_.+-]+@(ucn.cl|alumnos.ucn.cl|disc.ucn.cl|ce.ucn.cl)$/.test(email);
   const esNombreValido = (nombre) => nombre.length >= 10 && nombre.length <= 150;
   const validarRut = (rutCompleto) => {
@@ -76,8 +80,9 @@ const RegisterScreen = ({ navigation }) => {
     return `${cuerpo}-${dv}`;
   };
   
-
+// Manejador para el registro de usuarios.
   const handleRegister = async () => {
+    // Verificar que todos los campos estén llenos y sean válidos.
     if (!email || !name || !birthdate || !dni) {
       setErrorMessage('Todos los campos son obligatorios.');
       setErrorModalVisible(true);
@@ -91,6 +96,7 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     try {
+      // Llamada al servicio de registro y manejo de la respuesta.
         const response = await AuthService.register(email, name, birthdate, dni);
         setSuccessModalVisible(true);
         setTimeout(() => {
@@ -102,7 +108,7 @@ const RegisterScreen = ({ navigation }) => {
         setErrorModalVisible(true);
       }
     };
-
+// Renderiza los elementos de la interfaz de usuario.
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <TextInput label="Correo Electrónico" value={email} onChangeText={(text) => setEmail(text)} style={styles.input} />
@@ -129,7 +135,7 @@ const RegisterScreen = ({ navigation }) => {
     </ScrollView>
   );
 };
-
+// Estilos para los elementos de la pantalla.
 const styles = StyleSheet.create({
   container: {
     padding: 20,

@@ -9,8 +9,10 @@ import requests
 from dotenv import load_dotenv
 import os
 
+# Carga las variables de entorno
 load_dotenv()
 
+# Obtiene el token de GitHub desde las variables de entorno
 github_token = os.getenv('GITHUB_TOKEN')
 
 routes = Blueprint('routes', __name__)
@@ -40,6 +42,7 @@ def validar_rut(rut_completo):
         dv_esperado = 'K'
 
     return str(dv_esperado) == dv
+
 
 def es_anio_nacimiento_valido(anio_nacimiento):
     anio_actual = datetime.now().year
@@ -86,7 +89,7 @@ def add_user():
     return jsonify({"msg": "Usuario registrado con éxito"}), 201
 
 
-
+# Ruta para iniciar sesión
 @routes.route('/login', methods=['POST'])
 def login():
     if not request.is_json:
@@ -115,6 +118,7 @@ def login():
 
     return jsonify(user=user_info, access_token=access_token), 200
 
+# Ruta para editar el perfil de un usuario
 @routes.route('/edit_profile/<int:id>', methods=['PUT'])
 @jwt_required()
 def edit_profile(id):
@@ -147,6 +151,7 @@ def edit_profile(id):
     db.session.commit()
     return jsonify({"msg": "Perfil actualizado con éxito"}), 200
 
+#ruta para listar los commits de un repositorio en GitHub
 @routes.route('/repos/<username>/<repo_name>/commits')
 @jwt_required()
 def list_commits(username, repo_name):
@@ -160,6 +165,7 @@ def list_commits(username, repo_name):
     else:
         return jsonify({"error": "Error al obtener commits"}), response.status_code
     
+# Ruta para listar los repositorios de un usuario en GitHub
 @routes.route('/repos/<username>')
 @jwt_required()
 def list_repositories(username):

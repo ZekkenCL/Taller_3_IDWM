@@ -4,26 +4,31 @@ import { Card } from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/AuthService';
 
+// Componente para la pantalla que muestra los detalles de un repositorio.
 const RepositoryDetailsScreen = ({ route }) => {
     const [commits, setCommits] = useState([]);
     const { token } = useContext(AuthContext);
     const { repoName } = route.params;
 
+    // useEffect para cargar los commits al montar el componente
     useEffect(() => {
         const fetchCommits = async () => {
             try {
+                // Llamada al servicio para obtener commits del repositorio
                 const fetchedCommits = await AuthService.getCommits('Dizkm8',repoName, token);
-                setCommits(fetchedCommits);
+                setCommits(fetchedCommits);// Actualiza el estado con los commits obtenidos
             } catch (error) {
                 console.error('Error al obtener commits:', error);
             }
         };
 
         fetchCommits();
-    }, [repoName, token]);
+    }, [repoName, token]);// Dependencias del useEffect: repoName y token
 
+    // Función para extraer la clave única de cada commit
     const keyExtractor = (commit) => commit.sha;
 
+    // Renderiza los elementos de la interfaz de usuario
     return (
         <View style={styles.container}>
             <Text style={styles.repoName}>{repoName}</Text>
@@ -43,6 +48,7 @@ const RepositoryDetailsScreen = ({ route }) => {
     );
 };
 
+// Estilos para los elementos de la pantalla
 const styles = StyleSheet.create({
     container: {
         flex: 1,

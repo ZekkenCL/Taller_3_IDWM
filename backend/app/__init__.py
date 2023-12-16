@@ -23,7 +23,8 @@ def create_app():
 
     # Establece la clave secreta para JWT (JSON Web Token)
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-
+    
+    # Establece el token de github
     github_token = os.getenv('GITHUB_TOKEN')
 
     # Inicializa el manejador de JWT con la aplicación Flask

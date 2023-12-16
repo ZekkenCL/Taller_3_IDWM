@@ -4,25 +4,31 @@ import { TextInput, Button, Modal, Portal, Text } from 'react-native-paper';
 import AuthService from '../services/AuthService';
 import { AuthContext } from '../context/AuthContext'; // Asegúrate de que la ruta sea correcta
 
+// Componente de pantalla para editar el perfil del usuario.
 const EditarPerfilScreen = ({ navigation }) => {
-    const { user,setUser } = useContext(AuthContext);
-    const [name, setName] = useState(user.name || '');
-    const [email, setEmail] = useState(user.email || '');
-    const [birthdate, setBirthdate] = useState(user.birthdate || '');
+// Accede a la información del usuario y la función de actualización desde el contexto de autenticación.
+  const { user,setUser } = useContext(AuthContext);
+
+// Estados para gestionar el nombre, correo electrónico, fecha de nacimiento y modal.
+  const [name, setName] = useState(user.name || '');
+  const [email, setEmail] = useState(user.email || '');
+  const [birthdate, setBirthdate] = useState(user.birthdate || '');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+// Token del usuario para autenticación con la API.
   const { token } = useContext(AuthContext);
   
-
+// Funciones para validar el correo electrónico, nombre, RUT y fecha de nacimiento.
   const esCorreoValido = (email) => /^[a-zA-Z0-9_.+-]+@(ucn.cl|alumnos.ucn.cl|disc.ucn.cl|ce.ucn.cl)$/.test(email);
   const esNombreValido = (nombre) => nombre.length >= 10 && nombre.length <= 150;
   const validarRut = (rutCompleto) => {
-    // Eliminar puntos y guión
+// Eliminar puntos y guión
     const rut = rutCompleto.replace(/\./g, '').replace('-', '');
     const cuerpo = rut.slice(0, -1); // Obtener el cuerpo del RUT
     const dv = rut.slice(-1).toUpperCase(); // Obtener el dígito verificador
   
-    // Calcular el dígito verificador
+// Calcular el dígito verificador
     let suma = 0;
     let multiplicador = 2;
   
@@ -55,15 +61,16 @@ const EditarPerfilScreen = ({ navigation }) => {
     return `${partes[1]}${partes[2] ? '-' : ''}${partes[2]}${partes[3] ? '-' : ''}${partes[3]}`;
   };
 
+// Función para manejar la actualización del perfil.
   const handleUpdateProfile = async () => {
-    // Verificar si los campos están llenos
+    // Verificar si los campos están llenos.
     if (!name || !email || !birthdate) {
       setModalMessage('Todos los campos son obligatorios.');
       setModalVisible(true);
       return;
     }
 
-    // Verificar validez de los campos
+    // Verificar validez de los campos.
     if (!esCorreoValido(email) || !esNombreValido(name) || !esAnioNacimientoValido(birthdate)) {
       setModalMessage('Por favor, verifica tus datos.');
       setModalVisible(true);
@@ -71,17 +78,18 @@ const EditarPerfilScreen = ({ navigation }) => {
     }
 
     try {
-      // Actualizar perfil (debes pasar el token JWT si es necesario)
+      // Llama al servicio de autenticación para actualizar el perfil y muestra un mensaje de éxito.
       const updatedUser = await AuthService.updateProfile({ name, email, birthdate },user.id, token);
-      setUser(updatedUser); // Actualizar el contexto del usuario
+      setUser(updatedUser);// Actualiza el contexto del usuario
       setModalMessage('Perfil actualizado con éxito.');
       setModalVisible(true);
     } catch (error) {
+      // Muestra un mensaje de error si la actualización falla.
       setModalMessage(error.message || 'Error al actualizar el perfil');
       setModalVisible(true);
     }
   };
-
+// Renderiza los elementos de la interfaz, incluyendo campos de texto y un botón para enviar.
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <TextInput

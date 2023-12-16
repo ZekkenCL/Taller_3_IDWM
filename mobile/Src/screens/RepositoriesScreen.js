@@ -4,12 +4,15 @@ import { Card,Button } from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/AuthService';
 
+// Componente para la pantalla que muestra los repositorios.
 const RepositoriesScreen = () => {
     const [repos, setRepos] = useState([]);
     const { token } = useContext(AuthContext);
 
+    // useEffect para cargar los repositorios al montar el componente
     useEffect(() => {
         const fetchRepos = async () => {
+          // Llamada al servicio para obtener repositorios
             try {
                 const reposWithCommits = await AuthService.getRepositories('Dizkm8', token);
                 setRepos(reposWithCommits);
@@ -19,12 +22,13 @@ const RepositoriesScreen = () => {
         };
 
         fetchRepos();
-    }, [token]);
+    }, [token]);// Dependencia del useEffect: token
 
+// Manejador para cuando se presiona "Ver más" en un repositorio
     const handleViewMore = (repo) => {
     navigation.navigate('RepositoryDetailsScreen', { repoName: repo.name });
 };
-
+// Renderiza los elementos de la interfaz de usuario
     return (
         <View style={styles.container}>
             <FlatList

@@ -3,10 +3,13 @@ import { View, StyleSheet, SafeAreaView, TouchableOpacity, Text } from 'react-na
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 
+// Componente de pantalla del menú principal.
 const MenuPrincipalScreen = ({ navigation }) => {
+  // Extrae el usuario y la función de cierre de sesión del contexto
   const { logout } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
 
+   // Renderiza los elementos de la interfaz de usuario.
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.menuContainer}>
@@ -50,6 +53,7 @@ const MenuPrincipalScreen = ({ navigation }) => {
   );
 };
 
+// Estilos para los elementos de la pantalla.
 const styles = StyleSheet.create({
   container: {
     flex: 1,

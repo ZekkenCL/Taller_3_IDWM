@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { AuthProvider } from './Src/context/AuthContext';
 
+// Importaciones de las diferentes pantallas de la aplicación
 import HomeScreen from './Src/screens/HomeScreen';
 import LoginScreen from './Src/screens/LoginScreen';
 import RegisterScreen from './Src/screens/RegisterScreen';
@@ -13,6 +14,7 @@ import RepositoriesScreen from './Src/screens/RepositoriesScreen';
 import ChangePasswordScreen from './Src/screens/ChangePasswordScreen';
 import RepositoryDetailsScreen from './Src/screens/RepositoryDetailsScreen';
 
+// Crea un stack de navegación
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -66,4 +68,5 @@ function App() {
   );
 }
 
+// Exporta la aplicación principal
 export default App;
