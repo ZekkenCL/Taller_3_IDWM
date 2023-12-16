@@ -16,14 +16,14 @@ def create_app():
     app = Flask(__name__)
 
     # Configura la conexión a la base de datos MySQL
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:beno1989@localhost:3306/taller3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://"USUARIO":"CONTRASEÑA"@"HOST":"PUERTO"/"NOMBRE DE LA BASE DE DATOS"'
 
     # Desactiva la modificación de seguimiento de SQLAlchemy para mejorar el rendimiento
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Establece la clave secreta para JWT (JSON Web Token)
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-    
+
     # Establece el token de github
     github_token = os.getenv('GITHUB_TOKEN')
 
