@@ -60,9 +60,9 @@ debe modificar "TU CONTRASEÑA" con sus contraseñas sino no va funcionar el bac
 
 Tener creada la base de datos en mysql workbench con el nombre de "taller3"
 
-Modificar el archivo app.py:
+Modificar el archivo __init__.py:
 
-    liena 7 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://"USUARIO":"CONTRASEÑA"@"HOST":"PUERTO"/"NOMBRE DE LA BASE DE DATOS"'
+    liena 19 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://"USUARIO":"CONTRASEÑA"@"HOST":"PUERTO"/"NOMBRE DE LA BASE DE DATOS"'
 
     modificar USUARIO, CONTRASEÑA, HOST, PUERTO, NOMBRE DE LA BASE DE DATOS con sus datos para ingresar a la base de datos
 
