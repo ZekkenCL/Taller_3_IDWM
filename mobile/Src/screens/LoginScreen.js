@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation }) => {
         keyboardType="email-address"
       />
       <TextInput
-        label="RUT (sin puntos ni guión)"
+        label="Contraseña"
         value={password}
         onChangeText={setPassword}
         style={styles.input}
