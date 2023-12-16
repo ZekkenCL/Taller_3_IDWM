@@ -6,7 +6,12 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 import re
 from datetime import datetime
 import requests
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+github_token = os.getenv('GITHUB_TOKEN')
 
 routes = Blueprint('routes', __name__)
 
@@ -146,7 +151,8 @@ def edit_profile(id):
 @jwt_required()
 def list_commits(username, repo_name):
     url = f"https://api.github.com/repos/{username}/{repo_name}/commits"
-    response = requests.get(url)
+    headers = {'Authorization': f'token {github_token}'}
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         commits = response.json()
         # Los commits ya vienen ordenados por fecha de creación, con el más reciente primero
@@ -158,7 +164,8 @@ def list_commits(username, repo_name):
 @jwt_required()
 def list_repositories(username):
     url = f"https://api.github.com/users/{username}/repos"
-    response = requests.get(url)
+    headers = {'Authorization': f'token {github_token}'}
+    response = requests.get(url, headers=headers )
     if response.status_code == 200:
         repos = response.json()
         # Ordenar repositorios por fecha de modificación
@@ -180,7 +187,7 @@ def update_password():
     nueva_password = data.get('nueva_password')
 
 
-    user.password_hash = generate_password_hash(nueva_password)
+    user.password = generate_password_hash(nueva_password)
     db.session.commit()
 
     return jsonify({"msg": "Contraseña actualizada con éxito"}), 200
