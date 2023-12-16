@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "1280ab41-ff65-4ddb-9fb0-174fadcfbf07",
+		"name": "Taller3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31109913"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:5000/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Benito Muñoz\",\r\n    \"email\":\"benito.munoz@alumnos.ucn.cl\",\r\n    \"birthdate\":\"18-01-1999\",\r\n    \"dni\":\"19.952.433-K\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"benito.munoz@alumnos.ucn.cl\",\r\n    \"password\":\"19952433K\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"benito.munoz@alumnos.ucn.cl\",\r\n    \"password\":\"19952433K\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"benito.munoz@alumnos.ucn.cl\",\r\n    \"password\":\"1sdadasd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/edit_profile/10",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjc1MjEyMywianRpIjoiMmZmY2YwYTMtMWZlYS00YWJjLWFjYTEtOWZjMzE3ZDM1YjIxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAsIm5iZiI6MTcwMjc1MjEyMywiZXhwIjoxNzAyNzUzMDIzfQ.b15HFbFHyP6XnABAY6fjLCZITCgXVK3cnDw1tfLXEiI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Nombre Actualizado\",\r\n    \"email\":\"nuevo.correo@alumnos.ucn.cl\",\r\n    \"birthdate\":\"18-01-1990\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/edit_profile/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"edit_profile",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/update_password",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjc1MjI3NCwianRpIjoiZTFkYjdjM2YtYjgwOC00OGZkLTk2NmQtY2I4MDIxZTk2N2M3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAsIm5iZiI6MTcwMjc1MjI3NCwiZXhwIjoxNzAyNzUzMTc0fQ.5Z6nSErLUpo_PdTbMC5e8Cj8QzRX4Fp-MSe5htFM7AM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nueva_password\":\"beno1989\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/update_password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"update_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"nuevo.correo@alumnos.ucn.cl\",\r\n    \"password\":\"beno1989\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/repos/Dizkm8",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjc1MjM3NCwianRpIjoiODE0MTI5MjYtYmVkZC00M2EzLTg1YjQtYTg5YzhhYzdiZmM3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAsIm5iZiI6MTcwMjc1MjM3NCwiZXhwIjoxNzAyNzUzMjc0fQ.qc401WB-ih0KC6riTPe32DbotHd8Mn2Ae9d-oIQsSPk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/repos/Dizkm8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"repos",
+						"Dizkm8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/repos/Dizkm8/Hackaton/commits",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjc1MjM3NCwianRpIjoiODE0MTI5MjYtYmVkZC00M2EzLTg1YjQtYTg5YzhhYzdiZmM3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAsIm5iZiI6MTcwMjc1MjM3NCwiZXhwIjoxNzAyNzUzMjc0fQ.qc401WB-ih0KC6riTPe32DbotHd8Mn2Ae9d-oIQsSPk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/repos/Dizkm8/Hackaton/commits",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"repos",
+						"Dizkm8",
+						"Hackaton",
+						"commits"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
