@@ -10,6 +10,8 @@ import RegisterScreen from './Src/screens/RegisterScreen';
 import MenuPrincipalScreen from './Src/screens/MenuPrincipalScreen';
 import EditarPerfilScreen from './Src/screens/EditarPerfilScreen';
 import RepositoriesScreen from './Src/screens/RepositoriesScreen';
+import ChangePasswordScreen from './Src/screens/ChangePasswordScreen';
+import RepositoryDetailsScreen from './Src/screens/RepositoryDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +50,14 @@ function App() {
               name="VerRepositorios"
               component={RepositoriesScreen}
               options={{ title: 'Ver Repositorios' }}
+            />
+            <Stack.Screen
+              name="EditarContraseña"
+              component={ChangePasswordScreen}
+              options={{ title: 'Editar Contraseña' }}
+            />
+            <Stack.Screen name="RepositoryDetailsScreen"
+             component={RepositoryDetailsScreen} 
             />
           </Stack.Navigator>
         </NavigationContainer>

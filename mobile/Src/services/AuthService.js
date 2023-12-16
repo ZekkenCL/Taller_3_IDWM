@@ -80,6 +80,20 @@ const register = async (email, name, birthdate, dni) => {
       throw error;
     }
   };
+
+  const updatePassword = async (userData, token) => {
+    try {
+      const response = await axios.put(`${API_URL}/update_password`, userData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error al actualizar la contraseña:', error);
+      throw error;
+    }
+  };
   
 
 export default {
@@ -88,4 +102,5 @@ export default {
     updateProfile,
     getRepositories,
     getCommitsCount,
+    updatePassword,
 };

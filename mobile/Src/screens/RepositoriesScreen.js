@@ -22,8 +22,8 @@ const RepositoriesScreen = () => {
     }, [token]);
 
     const handleViewMore = (repo) => {
-        console.log("Ver más sobre:", repo.name);
-    };
+      navigation.navigate('RepositoryDetailsScreen', { repoName: repo.name });
+  };
 
     return (
         <View style={styles.container}>
