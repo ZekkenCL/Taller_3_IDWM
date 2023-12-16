@@ -1,4 +1,3 @@
-// services/AuthService.js
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/';
@@ -39,7 +38,36 @@ const register = async (email, name, birthdate, dni) => {
     }
   };
 
+  const updateProfile = async (userData, userId, token) => {
+    try {
+      const response = await axios.put(`${API_URL}/edit_profile/${userId}`, userData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error al actualizar el perfil:', error);
+      throw error;
+    }
+  };
+
+  const getRepositories = async (token) => {
+    try {
+      const response = await axios.get('http://localhost:5000/repos/Dizkm8', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener repositorios:', error);
+      throw error;
+    }
+  };
+  
+
 export default {
-  login,
+    login,
     register,
+    updateProfile,
+    getRepositories,
 };

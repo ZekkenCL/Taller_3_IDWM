@@ -7,6 +7,9 @@ import { AuthProvider } from './Src/context/AuthContext';
 import HomeScreen from './Src/screens/HomeScreen';
 import LoginScreen from './Src/screens/LoginScreen';
 import RegisterScreen from './Src/screens/RegisterScreen';
+import MenuPrincipalScreen from './Src/screens/MenuPrincipalScreen';
+import EditarPerfilScreen from './Src/screens/EditarPerfilScreen';
+import RepositoriesScreen from './Src/screens/RepositoriesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +33,21 @@ function App() {
               name="Register" 
               component={RegisterScreen} 
               options={{ title: 'Registrarse' }}
+            />
+            <Stack.Screen
+              name="MenuPrincipal"
+              component={MenuPrincipalScreen}
+              options={{ headerLeft: () => null }} 
+            />
+            <Stack.Screen
+              name="EditarPerfil"
+              component={EditarPerfilScreen}
+              options={{ title: 'Editar Perfil' }}
+            />
+            <Stack.Screen
+              name="VerRepositorios"
+              component={RepositoriesScreen}
+              options={{ title: 'Ver Repositorios' }}
             />
           </Stack.Navigator>
         </NavigationContainer>

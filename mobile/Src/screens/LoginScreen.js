@@ -15,11 +15,9 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       const response = await AuthService.login(email, password);
-      //prueba para ver si retorna el token
-      console.log(response);
       if (response.access_token) {
         login(response.access_token);
-
+        navigation.navigate('MenuPrincipal');
       } else {
         setErrorMessage('No se recibió el token');
         setErrorModalVisible(true);
