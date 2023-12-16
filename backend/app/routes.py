@@ -98,7 +98,17 @@ def login():
         return jsonify({"msg": "Credenciales incorrectas"}), 401
 
     access_token = create_access_token(identity=user.id)
-    return jsonify(access_token=access_token), 200
+
+    # Crear un objeto con la información del usuario
+    user_info = {
+        "id": user.id,
+        "email": user.email,
+        "name": user.name,
+        "birthdate": user.birthdate
+        # Puedes añadir más campos aquí si es necesario
+    }
+
+    return jsonify(user=user_info, access_token=access_token), 200
 
 @routes.route('/edit_profile/<int:id>', methods=['PUT'])
 @jwt_required()
