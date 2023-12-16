@@ -1,13 +1,22 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet, SafeAreaView, TouchableOpacity, Text } from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
 import { AuthContext } from '../context/AuthContext';
 
 const MenuPrincipalScreen = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.menuContainer}>
+      <Card style={styles.card}>
+        <Card.Content>
+          <Title>{user.name}</Title>
+          <Paragraph>Email: {user.email}</Paragraph>
+          <Paragraph>Fecha de Nacimiento: {user.birthdate}</Paragraph>
+        </Card.Content>
+      </Card>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('EditarPerfil')}>
@@ -46,6 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    padding:10,
   },
   menuContainer: {
     flex: 1,
@@ -75,6 +85,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  card: {
+    margin: 10,
+  },
+
 });
 
 export default MenuPrincipalScreen;
