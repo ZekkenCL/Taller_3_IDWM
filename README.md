@@ -49,7 +49,7 @@ Instala las dependencias:
 
     pip install -r requirements.txt
 
-Crear un archivo .evn en la raiz del proyecto de backend que contenga lo siguiente:
+Crear un archivo .env en la raiz del proyecto de backend que contenga lo siguiente:
 
         FLASK_SECRET_KEY='TU CONTRASEÑA AQUI'
         JWT_SECRET_KEY='TU CONTRASEÑA DE JWT AQUI'
