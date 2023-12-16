@@ -52,14 +52,31 @@ const register = async (email, name, birthdate, dni) => {
     }
   };
 
-  const getRepositories = async (token) => {
+  const getRepositories = async (username, token) => {
     try {
-      const response = await axios.get('http://localhost:5000/repos/Dizkm8', {
+      const response = await axios.get(`${API_URL}repos/${username}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      return response.data;
+      const repos = response.data;
+      const reposWithCommits = await Promise.all(repos.map(async repo => {
+        const commitCount = await getCommitsCount(username, repo.name, token);
+        return { ...repo, commitCount };
+      }));
+      return reposWithCommits;
     } catch (error) {
       console.error('Error al obtener repositorios:', error);
+      throw error;
+    }
+  };
+
+  const getCommitsCount = async (username, repoName, token) => {
+    try {
+      const response = await axios.get(`${API_URL}repos/${username}/${repoName}/commits`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return response.data.length;
+    } catch (error) {
+      console.error('Error al obtener commits:', error);
       throw error;
     }
   };
@@ -70,4 +87,5 @@ export default {
     register,
     updateProfile,
     getRepositories,
+    getCommitsCount,
 };
