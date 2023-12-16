@@ -1,87 +1,105 @@
-### Taller Introduccion al desarrollo web y movil
+# Backend de Portafolio
 
-Los sistemas de gestión de usuarios son fundamentales para las empresas que comienzan a dar sus primeros pasos en el mundo digital, es por eso por lo que la empresa Dumbo Supermercados Ltda. ha convocado a los estudiantes de Introducción al Desarrollo Web/Móvil de la Universidad Católica del Norte para realizar su nuevo sistema de gestión de clientes.
+La gestión del código fuente (SCM) es una parte
+fundamental del desarrollo de software y
+aplicaciones en general, exponentes como Git han
+cambiado la forma de abordar esta necesidad
+mediante un sistema de control de versionado
+distribuido (DVSC), a su vez, plataformas como
+GitHub han llevado el concepto distribuido a un
+paso superior aprovechando las capacidades de la
+web y el robusto diseño de Git.
 
-## Requisitos Previos
+## Comenzando
 
-Para ejecutar este proyecto, necesitarás instalar algunas herramientas y tecnologías en tu máquina:
+Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
+
+### Prerrequisitos
+
+Lo que necesitas para instalar el software y cómo instalarlos:
 
 - [Python](https://www.python.org/downloads/): Lenguaje de programación usado para el backend.
 - [Node.js y npm](https://nodejs.org/en/download/): Node.js es el entorno de ejecución para JavaScript y npm es el gestor de paquetes.
 - [MySQL](https://dev.mysql.com/downloads/installer/): Sistema de gestión de bases de datos.
 - [Visual Studio Code](https://code.visualstudio.com/download): Editor de codigo
 
-## Configuración del Backend
+Clonar el repositorio:
+        git clone https://github.com/ZekkenCL/Taller_3_IDWM.git
 
-1. Clona el repositorio del proyecto:
+### Instalación
 
-        git clone https://github.com/ZekkenCL/taller-iwm.git
+Una serie de pasos para que tengas un entorno de desarrollo ejecutándose:
 
-2. Navega al directorio del backend:
+Primero instalar el entorno virtual en caso de no tenerlo instalado(OPCIONAL)
 
-        cd backend
+    pip install virtualenv
 
-3. Instala un entorno virtual(opcional):
+Verifique que virtualenv se encuentre dentro de las variables de entorno en el PATH, si no lo hace puede que no funcione el comando siguiente
 
-        pip install virtualenv
+Luego crear y activar entorno virtual(OPCIONAL)(Solo si hizo el paso anterior):
 
-verifique que virtualenv se encuentre dentro de las variables de entorno en el PATH, si no lo hace puede que no funcione el comando siguiente
+    virtualenv -p python3 venv
 
-        virtualenv -p python3 venv
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-4. Activa el entorno virtual(Solo si hizo el paso 3):
+    .\venv\Scripts\activate
 
-        Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-        .\venv\Scripts\activate
+Instala las dependencias:
 
-5. Instala las dependencias:
+    pip install -r requirements.txt
 
-        pip install -r requirements.txt
+Crear un archivo .evn en la raiz del proyecto de backend que contenga lo siguiente:
 
-6. Inicializa la base de datos:
+        FLASK_SECRET_KEY='TU CONTRASEÑA AQUI'
+        JWT_SECRET_KEY='TU CONTRASEÑA DE JWT AQUI'
+        GITHUB_TOKEN='TU TOKEN DE GITHUB AQUI'
+debe modificar "TU CONTRASEÑA" con sus contraseñas sino no va funcionar el backend
 
-en la linea 16 de __init__.py cambie los datos de conexion a la base de datos "root"(usuario de su base de datos), "beno1989"(contraseña de su base de datos), "localhost"(host de su base de datos), "3306"(puerto de su base de datos) y finalemnte "taller"(nombre de la base de datos) 
+### Base de Datos
 
-luego ejecute los siguientes comando en la terminal
+Tener creada la base de datos en mysql workbench con el nombre de "taller3"
 
-        flask db init
+Modificar el archivo app.py:
 
-        flask db migrate
+    liena 7 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://"USUARIO":"CONTRASEÑA"@"HOST":"PUERTO"/"NOMBRE DE LA BASE DE DATOS"'
 
-        flask db upgrade
+    modificar USUARIO, CONTRASEÑA, HOST, PUERTO, NOMBRE DE LA BASE DE DATOS con sus datos para ingresar a la base de datos
 
-7. Ejecuta el seeder:
+Migrar base de datos:
 
-        python seeder.py
+    flask db init
+    flask db migrate
+    flask db upgrade
 
-8. Ejecuta el servidor de Flask:
+### Ejecucion
 
-        python run.py
+Ejecutar backend
 
-El servidor backend debería estar ahora ejecutándose en `http://localhost:5000/`.
+    python run.py
+
+El proyecto debería estar ahora ejecutándose en `localhost:5000`.
 
 ## Configuración del Frontend
 
-1. Navega al directorio del frontend:
+Navega al directorio del frontend:
 
     abre una nueva terminal:
 
-        cd frontend
+        cd mobile
 
-2. Instala las dependencias de Node.js:
+Instala las dependencias de Node.js:
 
         npm install
 
-3. Ejecuta el servidor de desarrollo de React:
+Ejecuta el servidor de desarrollo de React:
 
-        npm start
-
-El servidor frontend debería estar ahora ejecutándose en `http://localhost:3000/login`.
-
-
-    
+        npx expo start
+        
+En la misma terminal apretar "w" para ejecutar la version movil en su navegador web.
 
 
+## Recomendaciones
 
-
+El sistema no trae seeders, necesita registrarse primero para poder acceder a la app
+El sistema solo visualiza los datos de el usuario 'Dizkm8' si quiere visualizar los repositorios de otro usuario debe modificarlo en el linea 17 de RepositoriesScreen.js y en la linea 18 de RepositoryDetailsScreen.js
