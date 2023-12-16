@@ -16,7 +16,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       const response = await AuthService.login(email, password);
       if (response.access_token) {
-        login(response.access_token);
+        login(response.user, response.access_token);
         navigation.navigate('MenuPrincipal');
       } else {
         setErrorMessage('No se recibió el token');

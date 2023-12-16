@@ -1,4 +1,3 @@
-// contexts/AuthContext.js
 import React, { createContext, useState, useContext } from 'react';
 
 export const AuthContext = createContext();
@@ -7,9 +6,10 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  const login = (userData, token) => {
+  const login = (userData, tokenData) => {
+    console.log('Login:', userData,'token_:', tokenData);
     setUser(userData);
-    setToken(token);
+    setToken(tokenData);
   };
 
   const logout = () => {
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
