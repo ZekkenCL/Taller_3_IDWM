@@ -94,6 +94,18 @@ const register = async (email, name, birthdate, dni) => {
       throw error;
     }
   };
+
+  const getCommits = async (username, repoName, token) => {
+    try {
+      const response = await axios.get(`${API_URL}repos/${username}/${repoName}/commits`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener detalles de commits:', error);
+      throw error;
+    }
+  };
   
 
 export default {
@@ -103,4 +115,5 @@ export default {
     getRepositories,
     getCommitsCount,
     updatePassword,
+    getCommits
 };

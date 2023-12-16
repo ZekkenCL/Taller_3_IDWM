@@ -22,8 +22,8 @@ const RepositoriesScreen = () => {
     }, [token]);
 
     const handleViewMore = (repo) => {
-      navigation.navigate('RepositoryDetailsScreen', { repoName: repo.name });
-  };
+    navigation.navigate('RepositoryDetailsScreen', { repoName: repo.name });
+};
 
     return (
         <View style={styles.container}>

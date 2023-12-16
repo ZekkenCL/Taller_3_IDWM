@@ -12,7 +12,7 @@ const RepositoryDetailsScreen = ({ route }) => {
     useEffect(() => {
         const fetchCommits = async () => {
             try {
-                const fetchedCommits = await AuthService.getCommits(repoName, token);
+                const fetchedCommits = await AuthService.getCommits('Dizkm8',repoName, token);
                 setCommits(fetchedCommits);
             } catch (error) {
                 console.error('Error al obtener commits:', error);
@@ -22,17 +22,19 @@ const RepositoryDetailsScreen = ({ route }) => {
         fetchCommits();
     }, [repoName, token]);
 
+    const keyExtractor = (commit) => commit.sha;
+
     return (
         <View style={styles.container}>
             <Text style={styles.repoName}>{repoName}</Text>
             <FlatList
                 data={commits}
-                keyExtractor={commit => commit.id.toString()}
+                keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
                     <Card style={styles.card}>
                         <Card.Content>
-                            <Text>{item.message}</Text>
-                            <Text>{new Date(item.date).toLocaleDateString()}</Text>
+                            <Text>{item.commit.message}</Text>
+                            <Text>{new Date(item.commit.author.date).toLocaleDateString()}</Text>
                         </Card.Content>
                     </Card>
                 )}
