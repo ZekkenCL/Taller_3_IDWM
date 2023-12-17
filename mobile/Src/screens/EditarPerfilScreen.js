@@ -81,8 +81,14 @@ const EditarPerfilScreen = ({ navigation }) => {
       // Llama al servicio de autenticación para actualizar el perfil y muestra un mensaje de éxito.
       const updatedUser = await AuthService.updateProfile({ name, email, birthdate },user.id, token);
       setUser(updatedUser);// Actualiza el contexto del usuario
-      setModalMessage('Perfil actualizado con éxito.');
+      setModalMessage('Perfil actualizado con éxito. Serás redirigido al inicio de sesión.');
       setModalVisible(true);
+
+      setTimeout(() => {
+        logout();
+        navigation.navigate('Login');
+      }, 3000);
+      
     } catch (error) {
       // Muestra un mensaje de error si la actualización falla.
       setModalMessage(error.message || 'Error al actualizar el perfil');
