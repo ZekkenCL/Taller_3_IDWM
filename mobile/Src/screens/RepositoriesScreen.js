@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import AuthService from '../services/AuthService';
 
 // Componente para la pantalla que muestra los repositorios.
-const RepositoriesScreen = () => {
+const RepositoriesScreen = ({navigation}) => {
     const [repos, setRepos] = useState([]);
     const { token } = useContext(AuthContext);
 
