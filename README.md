@@ -24,53 +24,61 @@ Lo que necesitas para instalar el software y cómo instalarlos:
 - [Visual Studio Code](https://code.visualstudio.com/download): Editor de codigo
 
 Clonar el repositorio:
+
         git clone https://github.com/ZekkenCL/Taller_3_IDWM.git
 
 ### Instalación
 
 Una serie de pasos para que tengas un entorno de desarrollo ejecutándose:
 
-Navegar hasta la carpeta del backend
+1. Navegar hasta la carpeta del backend
     
     cd backend
 
-Instalar el entorno virtual en caso de no tenerlo instalado(OPCIONAL)
+2. Instalar el entorno virtual en caso de no tenerlo instalado(OPCIONAL)(en caso de no querer instalar entorno virtual seguir desde el paso N° 5)
 
     pip install virtualenv
 
-Verifique que virtualenv se encuentre dentro de las variables de entorno en el PATH, si no lo hace puede que no funcione el comando siguiente
+3. Verifique que virtualenv se encuentre dentro de las variables de entorno en el PATH, si no lo hace puede que no funcione el comando siguiente
 
-Luego crear y activar entorno virtual(OPCIONAL)(Solo si hizo el paso anterior):
+Luego crear entorno virtual(OPCIONAL)(Solo si hizo el paso anterior):
 
     virtualenv -p python3 venv
+
+Si el comando anterior no funciona y quiere tener un entorno virtual puede probar el siguiente comando:
+
+    python -m venv venv
+
+4. Luego ejecutar el entorno virtual con el siguiente comando(solamentte si esta siguiendo los pasos N° 2 y 3):
 
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
     .\venv\Scripts\activate
 
 
-Instala las dependencias:
+5. Instala las dependencias:
 
     pip install -r requirements.txt
 
-Crear un archivo .env en la raiz del proyecto de backend que contenga lo siguiente:
+6. Crear un archivo .env en la raiz del proyecto de backend que contenga lo siguiente:
 
         FLASK_SECRET_KEY='TU CONTRASEÑA AQUI'
         JWT_SECRET_KEY='TU CONTRASEÑA DE JWT AQUI'
         GITHUB_TOKEN='TU TOKEN DE GITHUB AQUI'
+
 debe modificar "TU CONTRASEÑA" con sus contraseñas sino no va funcionar el backend
 
 ### Base de Datos
 
 Tener creada la base de datos en mysql workbench con el nombre de "taller3"
 
-Modificar el archivo __init__.py:
+7. Modificar el archivo __init__.py:
 
     liena 19 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://"USUARIO":"CONTRASEÑA"@"HOST":"PUERTO"/"NOMBRE DE LA BASE DE DATOS"'
 
     modificar USUARIO, CONTRASEÑA, HOST, PUERTO, NOMBRE DE LA BASE DE DATOS con sus datos para ingresar a la base de datos
 
-Migrar base de datos:
+8. Migrar base de datos:
 
     flask db init
     flask db migrate
@@ -78,7 +86,7 @@ Migrar base de datos:
 
 ### Ejecucion
 
-Ejecutar backend
+9. Ejecutar backend
 
     python run.py
 
@@ -86,21 +94,21 @@ El proyecto debería estar ahora ejecutándose en `localhost:5000`.
 
 ## Configuración del Frontend
 
-Navega al directorio del frontend:
+1. Navega al directorio del frontend:
 
     abre una nueva terminal:
 
         cd mobile
 
-Instala las dependencias de Node.js:
+2. Instala las dependencias de Node.js:
 
         npm install
 
-Ejecuta el servidor de desarrollo de React:
+3. Ejecuta el servidor de desarrollo de React:
 
         npx expo start
         
-En la misma terminal apretar "w" para ejecutar la version movil en su navegador web.
+4. En la misma terminal apretar "w" para ejecutar la version movil en su navegador web.
 
 
 ## Recomendaciones
