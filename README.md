@@ -30,7 +30,11 @@ Clonar el repositorio:
 
 Una serie de pasos para que tengas un entorno de desarrollo ejecutándose:
 
-Primero instalar el entorno virtual en caso de no tenerlo instalado(OPCIONAL)
+Navegar hasta la carpeta del backend
+    
+    cd backend
+
+Instalar el entorno virtual en caso de no tenerlo instalado(OPCIONAL)
 
     pip install virtualenv
 
