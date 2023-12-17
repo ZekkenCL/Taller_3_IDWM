@@ -18,6 +18,7 @@ const EditarPerfilScreen = ({ navigation }) => {
 
 // Token del usuario para autenticación con la API.
   const { token } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   
 // Funciones para validar el correo electrónico, nombre, RUT y fecha de nacimiento.
   const esCorreoValido = (email) => /^[a-zA-Z0-9_.+-]+@(ucn.cl|alumnos.ucn.cl|disc.ucn.cl|ce.ucn.cl)$/.test(email);
