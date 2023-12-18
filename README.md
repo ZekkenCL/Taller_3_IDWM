@@ -111,7 +111,15 @@ El proyecto debería estar ahora ejecutándose en `localhost:5000`.
 4. En la misma terminal apretar "w" para ejecutar la version movil en su navegador web.
 
 
-## Recomendaciones
+## Consideraciones
 
-El sistema no trae seeders, necesita registrarse primero para poder acceder a la app
-El sistema solo visualiza los datos de el usuario 'Dizkm8' si quiere visualizar los repositorios de otro usuario debe modificarlo en el linea 17 de RepositoriesScreen.js y en la linea 18 de RepositoryDetailsScreen.js
+El sistema no trae seeders, necesita registrarse primero para poder acceder a la app.
+
+El sistema solo visualiza los datos de el usuario 'Dizkm8' si quiere visualizar los repositorios de otro usuario debe modificarlo en el linea 17 de RepositoriesScreen.js y en la linea 18 de RepositoryDetailsScreen.js.
+
+El sistema guarda el rut terminado en "k" como mayuscula.
+
+Al momemto de registrarse la contraseña por defecto sera el rut sin puntos ni guion.
+
+Al presionar ver repositorios tarda en cargar los repositorios, lo mismo ocurre al presionar ver mas de un repositorio especifico.
+
