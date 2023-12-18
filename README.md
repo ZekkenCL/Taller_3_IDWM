@@ -123,3 +123,4 @@ Al momemto de registrarse la contraseña por defecto sera el rut sin puntos ni g
 
 Al presionar ver repositorios tarda en cargar los repositorios, lo mismo ocurre al presionar ver mas de un repositorio especifico.
 
+Si al momento de instalar virtualenv este no es reconocido, pruebe reiniciando visual estudio code. Si aun no funciona pruebe el otro comando.(Solo si desea instalar el entorno virtual)
